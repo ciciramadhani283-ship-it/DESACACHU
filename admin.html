@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Aduan - Desa Serunai</title>
+
+    <link rel="icon" type="jpg" href="favicon.jpg">
+
+
+
+
+    <style>
+
+        * {
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+            background: #f4f7f5;
+            color: #333;
+        }
+
+
+        /* =====================================
+           LOGIN ADMIN
+        ===================================== */
+
+        .login-container {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #176b3a,
+                    #0f4e2a
+                );
+
+        }
+
+
+        .login-box {
+
+            width: 100%;
+
+            max-width: 400px;
+
+            background: white;
+
+            padding: 35px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 10px 35px
+                rgba(0, 0, 0, 0.2);
+
+            text-align: center;
+
+        }
+
+
+        .login-icon {
+
+            font-size: 55px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .login-box h1 {
+
+            color: #176b3a;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .login-box p {
+
+            color: #666;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .login-box input {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border:
+                1px solid #ccc;
+
+            border-radius: 8px;
+
+            margin-bottom: 12px;
+
+            font-size: 16px;
+
+        }
+
+
+        .login-box button {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #176b3a;
+
+            color: white;
+
+            font-size: 16px;
+
+            cursor: pointer;
+
+        }
+
+
+        .login-box button:hover {
+
+            background: #0f4e2a;
+
+        }
+
+
+        .error {
+
+            color: #c62828;
+
+            margin-top: 12px;
+
+            display: none;
+
+            font-size: 14px;
+
+        }
+
+
+        /* =====================================
+           HALAMAN ADMIN
+        ===================================== */
+
+        #halamanAdmin {
+
+            display: none;
+
+        }
+
+
+        header {
+
+            background: #176b3a;
+
+            color: white;
+
+            padding: 20px;
+
+            text-align: center;
+
+        }
+
+
+        header h1 {
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .admin-container {
+
+            width: 95%;
+
+            max-width: 1100px;
+
+            margin: 30px auto;
+
+        }
+
+
+        .admin-toolbar {
+
+            background: white;
+
+            padding: 20px;
+
+            margin-bottom: 20px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 4px 15px
+                rgba(0,0,0,0.08);
+
+        }
+
+
+        .admin-toolbar h2 {
+
+            color: #176b3a;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .api-status {
+
+            font-size: 14px;
+
+            color: #666;
+
+            margin-top: 5px;
+
+        }
+
+
+        .card {
+
+            background: white;
+
+            margin-bottom: 20px;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 4px 15px
+                rgba(0,0,0,0.1);
+
+        }
+
+
+        .card h3 {
+
+            color: #176b3a;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .info {
+
+            line-height: 1.8;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .aduan {
+
+            background: #f5f5f5;
+
+            padding: 15px;
+
+            border-radius: 8px;
+
+            margin: 10px 0;
+
+            line-height: 1.6;
+
+        }
+
+
+        textarea {
+
+            width: 100%;
+
+            height: 100px;
+
+            padding: 12px;
+
+            border:
+                1px solid #ccc;
+
+            border-radius: 8px;
+
+            resize: vertical;
+
+            font-size: 14px;
+
+        }
+
+
+        button {
+
+            margin-top: 10px;
+
+            padding: 11px 20px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            background: #176b3a;
+
+            color: white;
+
+            cursor: pointer;
+
+        }
+
+
+        button:hover {
+
+            background: #0f4e2a;
+
+        }
+
+
+        .hapus {
+
+            background: #c62828;
+
+            margin-left: 5px;
+
+        }
+
+
+        .hapus:hover {
+
+            background: #a51f1f;
+
+        }
+
+
+        .logout {
+
+            background: #555;
+
+            margin-top: 15px;
+
+        }
+
+
+        .logout:hover {
+
+            background: #333;
+
+        }
+
+
+        .refresh {
+
+            background: #1976d2;
+
+            margin-left: 5px;
+
+        }
+
+
+        .refresh:hover {
+
+            background: #125ca1;
+
+        }
+
+
+        .status {
+
+            display: inline-block;
+
+            padding: 5px 10px;
+
+            border-radius: 15px;
+
+            background: #fff3cd;
+
+            color: #856404;
+
+            font-size: 13px;
+
+        }
+
+
+        .balasan {
+
+            background: #e8f5ec;
+
+            padding: 15px;
+
+            margin-top: 15px;
+
+            border-radius: 8px;
+
+            line-height: 1.6;
+
+        }
+
+
+        .kosong {
+
+            text-align: center;
+
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 15px;
+
+        }
+
+
+        .loading {
+
+            text-align: center;
+
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 15px;
+
+        }
+
+
+        .api-error {
+
+            background: #ffebee;
+
+            color: #b71c1c;
+
+            padding: 15px;
+
+            border-radius: 8px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .card {
+
+                padding: 18px;
+
+            }
+
+            .admin-toolbar {
+
+                padding: 18px;
+
+            }
+
+            .hapus {
+
+                margin-left: 0;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==================================================
+     LOGIN ADMIN
+================================================== -->
+
+<div id="halamanLogin"
+     class="login-container">
+
+
+    <div class="login-box">
+
+
+        <div class="login-icon">
+            🔐
+        </div>
+
+
+        <h1>
+            Admin Desa Serunai
+        </h1>
+
+
+        <p>
+            Silakan masukkan sandi administrator.
+        </p>
+
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Masukkan sandi"
+            autocomplete="off"
+        >
+
+
+        <button onclick="loginAdmin()">
+
+            Masuk
+
+        </button>
+
+
+        <div id="pesanError"
+             class="error">
+
+            Sandi salah!
+            Silakan coba lagi.
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     HALAMAN ADMIN
+================================================== -->
+
+<div id="halamanAdmin">
+
+
+    <header>
+
+        <h1>
+            Admin Desa Serunai
+        </h1>
+
+        <p>
+            Kelola Aduan Masyarakat
+        </p>
+
+
+        <button
+            class="logout"
+            onclick="logoutAdmin()">
+
+            Keluar
+
+        </button>
+
+    </header>
+
+
+
+    <div class="admin-container">
+
+
+        <div class="admin-toolbar">
+
+            <h2>
+                Data Aduan Masyarakat
+            </h2>
+
+            <p>
+                Kelola laporan dan balasan masyarakat.
+            </p>
+
+
+            <p id="apiStatus"
+               class="api-status">
+
+                Menghubungkan ke API...
+
+            </p>
+
+
+            <button
+                class="refresh"
+                onclick="tampilkanAduan()">
+
+                🔄 Refresh Data
+
+            </button>
+
+        </div>
+
+
+
+        <div id="daftarAduan">
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+
+/* ==================================================
+   KONFIGURASI
+================================================== */
+
+
+/*
+    GANTI URL DI BAWAH DENGAN URL API ANDA.
+
+    Contoh:
+
+    const API_URL =
+    "https://domainanda.com/api/aduan";
+
+*/
+
+const API_URL =
+    "https://script.google.com/macros/s/AKfycbw3DdtZPSlpcEm8FD1YqkW2PEuzzQgMmT2VUtLUeJVFLNxJkrNik90-c7Q5aI1RIcu0/exec";
+/*
+    GANTI PASSWORD ADMIN DI SINI.
+
+    Contoh:
+
+    const PASSWORD_ADMIN = "Serunai2026!";
+
+*/
+
+const PASSWORD_ADMIN =
+    "admin123";
+
+
+/*
+    Nama localStorage
+*/
+
+const STORAGE_KEY =
+    "aduanDesaSerunai";
+
+
+
+/* ==================================================
+   LOGIN ADMIN
+================================================== */
+
+function loginAdmin() {
+
+
+    const password =
+        document.getElementById(
+            "password"
+        ).value;
+
+
+    const pesanError =
+        document.getElementById(
+            "pesanError"
+        );
+
+
+    if (
+        password ===
+        PASSWORD_ADMIN
+    ) {
+
+
+        sessionStorage.setItem(
+            "adminLogin",
+            "true"
+        );
+
+
+        document.getElementById(
+            "halamanLogin"
+        ).style.display =
+            "none";
+
+
+        document.getElementById(
+            "halamanAdmin"
+        ).style.display =
+            "block";
+
+
+        tampilkanAduan();
+
+
+    } else {
+
+
+        pesanError.style.display =
+            "block";
+
+
+        document.getElementById(
+            "password"
+        ).value = "";
+
+
+    }
+
+}
+
+
+
+/* ==================================================
+   LOGIN DENGAN ENTER
+================================================== */
+
+document
+    .getElementById("password")
+    .addEventListener(
+        "keypress",
+        function(event) {
+
+            if (
+                event.key ===
+                "Enter"
+            ) {
+
+                loginAdmin();
+
+            }
+
+        }
+    );
+
+
+
+/* ==================================================
+   CEK LOGIN
+================================================== */
+
+function cekLogin() {
+
+
+    const sudahLogin =
+        sessionStorage.getItem(
+            "adminLogin"
+        );
+
+
+    if (
+        sudahLogin ===
+        "true"
+    ) {
+
+
+        document.getElementById(
+            "halamanLogin"
+        ).style.display =
+            "none";
+
+
+        document.getElementById(
+            "halamanAdmin"
+        ).style.display =
+            "block";
+
+
+        tampilkanAduan();
+
+
+    } else {
+
+
+        document.getElementById(
+            "halamanLogin"
+        ).style.display =
+            "flex";
+
+
+        document.getElementById(
+            "halamanAdmin"
+        ).style.display =
+            "none";
+
+    }
+
+}
+
+
+
+/* ==================================================
+   LOGOUT
+================================================== */
+
+function logoutAdmin() {
+
+
+    sessionStorage.removeItem(
+        "adminLogin"
+    );
+
+
+    document.getElementById(
+        "halamanAdmin"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "halamanLogin"
+    ).style.display =
+        "flex";
+
+
+    document.getElementById(
+        "password"
+    ).value = "";
+
+}
+
+
+
+/* ==================================================
+   STATUS API
+================================================== */
+
+function setApiStatus(
+    text,
+    color = "#666"
+) {
+
+
+    const status =
+        document.getElementById(
+            "apiStatus"
+        );
+
+
+    status.innerText = text;
+
+    status.style.color =
+        color;
+
+}
+
+
+
+/* ==================================================
+   MENGAMBIL DATA DARI API
+================================================== */
+
+async function ambilDataAPI() {
+
+
+    const response =
+        await fetch(
+            API_URL,
+            {
+                method: "GET",
+
+                headers: {
+                    "Accept":
+                        "application/json"
+                }
+            }
+        );
+
+
+    if (
+        !response.ok
+    ) {
+
+        throw new Error(
+            "API Error: " +
+            response.status
+        );
+
+    }
+
+
+    const data =
+        await response.json();
+
+
+    return data;
+
+}
+
+
+
+/* ==================================================
+   MENAMPILKAN ADUAN
+================================================== */
+
+async function tampilkanAduan() {
+
+
+    const container =
+        document.getElementById(
+            "daftarAduan"
+        );
+
+
+    container.innerHTML = `
+
+        <div class="loading">
+
+            <h2>
+                Memuat data...
+            </h2>
+
+            <p>
+                Mengambil data aduan.
+            </p>
+
+        </div>
+
+    `;
+
+
+    /*
+        COBA MENGAMBIL DARI API
+    */
+
+    try {
+
+
+        const data =
+            await ambilDataAPI();
+
+
+        /*
+            Simpan salinan data
+            ke localStorage.
+        */
+
+        localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(data)
+        );
+
+
+        setApiStatus(
+            "● Terhubung ke API",
+            "#176b3a"
+        );
+
+
+        renderAduan(data);
+
+
+    }
+
+
+    /*
+        JIKA API GAGAL
+    */
+
+    catch(error) {
+
+
+        console.error(
+            "API Error:",
+            error
+        );
+
+
+        /*
+            Ambil data dari localStorage
+        */
+
+        const data =
+            JSON.parse(
+                localStorage.getItem(
+                    STORAGE_KEY
+                )
+            ) || [];
+
+
+        setApiStatus(
+            "● API tidak dapat dihubungi. Menggunakan data lokal.",
+            "#c62828"
+        );
+
+
+        renderAduan(data);
+
+    }
+
+}
+
+
+
+/* ==================================================
+   RENDER DATA ADUAN
+================================================== */
+
+function renderAduan(data) {
+
+
+    const container =
+        document.getElementById(
+            "daftarAduan"
+        );
+
+
+    container.innerHTML = "";
+
+
+    if (
+        !data ||
+        data.length === 0
+    ) {
+
+
+        container.innerHTML = `
+
+            <div class="kosong">
+
+                <h2>
+                    Belum Ada Aduan
+                </h2>
+
+                <p>
+                    Belum ada masyarakat
+                    yang mengirimkan aduan.
+                </p>
+
+            </div>
+
+        `;
+
+
+        return;
+
+    }
+
+
+
+    data.forEach(
+        function(aduan, index) {
+
+
+            /*
+                Gunakan id jika tersedia.
+                Jika API tidak memberikan id,
+                gunakan index.
+            */
+
+            const id =
+                aduan.id !== undefined
+                ? aduan.id
+                : index;
+
+
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "card";
+
+
+
+            card.innerHTML = `
+
+                <h3>
+                    Aduan #${index + 1}
+                </h3>
+
+
+                <div class="info">
+
+                    <b>Nama:</b>
+                    ${aman(aduan.nama)}
+                    <br>
+
+                    <b>No. HP:</b>
+                    ${aman(aduan.hp)}
+                    <br>
+
+                    <b>Kategori:</b>
+                    ${aman(aduan.kategori)}
+                    <br>
+
+                    <b>Tanggal:</b>
+                    ${aman(aduan.tanggal)}
+                    <br>
+
+                    <b>Status:</b>
+
+                    <span class="status">
+
+                        ${aman(
+                            aduan.status ||
+                            "Menunggu"
+                        )}
+
+                    </span>
+
+                </div>
+
+
+
+                <div class="aduan">
+
+                    <b>
+                        Isi Aduan:
+                    </b>
+
+                    <p>
+                        ${aman(
+                            aduan.isi
+                        )}
+                    </p>
+
+                </div>
+
+
+
+                ${
+                    aduan.balasan
+                    ?
+
+                    `
+
+                    <div class="balasan">
+
+                        <b>
+                            Balasan Admin:
+                        </b>
+
+                        <p>
+                            ${aman(
+                                aduan.balasan
+                            )}
+                        </p>
+
+                    </div>
+
+                    `
+
+                    :
+
+                    `
+
+                    <textarea
+                        id="balasan-${id}"
+                        placeholder="Tulis balasan untuk masyarakat..."
+                    ></textarea>
+
+
+                    <button
+                        onclick="balasAduan('${id}')">
+
+                        Kirim Balasan
+
+                    </button>
+
+                    `
+
+                }
+
+
+
+                <button
+                    class="hapus"
+                    onclick="hapusAduan('${id}')">
+
+                    Hapus
+
+                </button>
+
+            `;
+
+
+            container.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+
+/* ==================================================
+   KEAMANAN TAMPILAN HTML
+================================================== */
+
+function aman(value) {
+
+
+    if (
+        value === null ||
+        value === undefined
+    ) {
+
+        return "";
+
+    }
+
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        String(value);
+
+
+    return div.innerHTML;
+
+}
+
+
+
+/* ==================================================
+   BALAS ADUAN
+================================================== */
+
+async function balasAduan(id) {
+
+
+    const textarea =
+        document.getElementById(
+            "balasan-" + id
+        );
+
+
+    if (!textarea) {
+
+        return;
+
+    }
+
+
+    const balasan =
+        textarea.value.trim();
+
+
+    if (
+        balasan === ""
+    ) {
+
+
+        alert(
+            "Silakan tulis balasan terlebih dahulu!"
+        );
+
+
+        return;
+
+    }
+
+
+
+    /*
+        COBA KIRIM KE API
+    */
+
+    try {
+
+
+        const response =
+            await fetch(
+                API_URL +
+                "/" +
+                encodeURIComponent(id),
+                {
+
+                    method: "PUT",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json",
+
+                        "Accept":
+                            "application/json"
+
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            balasan:
+                                balasan,
+
+                            status:
+                                "Sudah Dibalas"
+
+                        })
+
+                }
+            );
+
+
+        if (
+            !response.ok
+        ) {
+
+            throw new Error(
+                "API gagal menyimpan balasan"
+            );
+
+        }
+
+
+        alert(
+            "Balasan berhasil dikirim!"
+        );
+
+
+        tampilkanAduan();
+
+
+    }
+
+
+    catch(error) {
+
+
+        console.error(
+            error
+        );
+
+
+        /*
+            FALLBACK LOCAL STORAGE
+        */
+
+        let data =
+            JSON.parse(
+                localStorage.getItem(
+                    STORAGE_KEY
+                )
+            ) || [];
+
+
+        data =
+            data.map(
+                function(aduan) {
+
+
+                    if (
+                        String(
+                            aduan.id
+                        ) ===
+                        String(id)
+                    ) {
+
+                        aduan.balasan =
+                            balasan;
+
+                        aduan.status =
+                            "Sudah Dibalas";
+
+                    }
+
+
+                    return aduan;
+
+                }
+            );
+
+
+        localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(data)
+        );
+
+
+        alert(
+            "API tidak tersedia. Balasan disimpan secara lokal."
+        );
+
+
+        tampilkanAduan();
+
+    }
+
+}
+
+
+
+/* ==================================================
+   HAPUS ADUAN
+================================================== */
+
+async function hapusAduan(id) {
+
+
+    const yakin =
+        confirm(
+            "Apakah Anda yakin ingin menghapus aduan ini?"
+        );
+
+
+    if (!yakin) {
+
+        return;
+
+    }
+
+
+
+    /*
+        COBA HAPUS DARI API
+    */
+
+    try {
+
+
+        const response =
+            await fetch(
+                API_URL +
+                "/" +
+                encodeURIComponent(id),
+                {
+
+                    method: "DELETE",
+
+                    headers: {
+
+                        "Accept":
+                            "application/json"
+
+                    }
+
+                }
+            );
+
+
+        if (
+            !response.ok
+        ) {
+
+            throw new Error(
+                "API gagal menghapus data"
+            );
+
+        }
+
+
+        alert(
+            "Aduan berhasil dihapus!"
+        );
+
+
+        tampilkanAduan();
+
+
+    }
+
+
+    catch(error) {
+
+
+        console.error(
+            error
+        );
+
+
+        /*
+            FALLBACK LOCAL STORAGE
+        */
+
+        let data =
+            JSON.parse(
+                localStorage.getItem(
+                    STORAGE_KEY
+                )
+            ) || [];
+
+
+        data =
+            data.filter(
+                function(aduan) {
+
+                    return String(
+                        aduan.id
+                    ) !== String(id);
+
+                }
+            );
+
+
+        localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(data)
+        );
+
+
+        alert(
+            "API tidak tersedia. Data dihapus dari penyimpanan lokal."
+        );
+
+
+        tampilkanAduan();
+
+    }
+
+}
+
+
+
+/* ==================================================
+   JALANKAN SISTEM
+================================================== */
+
+cekLogin();
+
+
+</script>
+
+</body>
+
+</html>

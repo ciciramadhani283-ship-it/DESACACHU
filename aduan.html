@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Aduan Masyarakat - Desa Serunai
+    </title>
+
+    <link rel="icon" type="jpg" href="favicon.jpg">
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f7fc;
+            color: #29263d;
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            min-height: 95px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 35px;
+        }
+
+
+        .logo {
+            color: #7651cf;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+
+        .menu a {
+            text-decoration: none;
+            color: #29263d;
+            font-weight: bold;
+            padding: 12px 0;
+        }
+
+
+        .menu a:hover {
+            color: #7651cf;
+        }
+
+
+        .menu a.active {
+            background: #7651cf;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 25px;
+        }
+
+
+        /* ================= HERO ================= */
+
+        .hero {
+            background:
+                linear-gradient(
+                    135deg,
+                    #7651cf,
+                    #a88be5
+                );
+
+            min-height: 330px;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            color: white;
+        }
+
+
+        .small-title {
+            letter-spacing: 3px;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+
+        .hero p {
+            font-size: 17px;
+        }
+
+
+        /* ================= FORM ================= */
+
+        .form-container {
+
+            max-width: 700px;
+
+            margin: 55px auto;
+
+            background: white;
+
+            padding: 35px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0,0,0,0.08);
+
+        }
+
+
+        .form-container h2 {
+
+            color: #7651cf;
+
+            margin-bottom: 25px;
+
+            font-size: 26px;
+
+        }
+
+
+        .form-group {
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            color: #7651cf;
+
+            font-weight: bold;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+
+            width: 100%;
+
+            padding: 14px;
+
+            border:
+                1px solid #ccc;
+
+            border-radius: 9px;
+
+            font-size: 15px;
+
+            font-family:
+                Arial, sans-serif;
+
+        }
+
+
+        .form-group textarea {
+
+            height: 130px;
+
+            resize: vertical;
+
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+
+            outline: none;
+
+            border-color:
+                #7651cf;
+
+        }
+
+
+        /* ================= BUTTON ================= */
+
+        .btn-kirim {
+
+            width: 100%;
+
+            padding: 14px;
+
+            background:
+                #7651cf;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 9px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+        }
+
+
+        .btn-kirim:hover {
+
+            background:
+                #6340b5;
+
+        }
+
+
+        .btn-kirim:disabled {
+
+            background:
+                #aaa;
+
+            cursor:
+                not-allowed;
+
+        }
+
+
+        /* ================= HASIL ================= */
+
+        .hasil {
+
+            margin-top: 20px;
+
+            padding: 15px;
+
+            border-radius: 9px;
+
+            display: none;
+
+            text-align: center;
+
+            font-weight: bold;
+
+        }
+
+
+        .hasil.sukses {
+
+            background:
+                #eee8ff;
+
+            color:
+                #5c3da5;
+
+        }
+
+
+        .hasil.error {
+
+            background:
+                #ffebee;
+
+            color:
+                #c62828;
+
+        }
+
+
+        /* ================= API STATUS ================= */
+
+        .api-info {
+
+            margin-top: 15px;
+
+            padding: 10px;
+
+            background:
+                #f5f3ff;
+
+            color:
+                #7651cf;
+
+            border-radius: 8px;
+
+            font-size: 12px;
+
+            text-align: center;
+
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 800px) {
+
+            nav {
+
+                height: auto;
+
+                flex-direction: column;
+
+                gap: 15px;
+
+                padding: 20px;
+
+            }
+
+
+            .menu {
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+
+                gap: 15px;
+
+            }
+
+
+            .hero h1 {
+
+                font-size: 35px;
+
+            }
+
+
+            .form-container {
+
+                margin:
+                    30px 20px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+   
+
+<!-- ================= NAVBAR ================= -->
+
+
+<nav>
+    <div class="logo">🌿 Desa Serunai</div>
+
+    <div class="menu">
+        <a href="index.html" class="active">Beranda</a>
+        <a href="profil.html">Profil</a>
+        <a href="fasilitas.html">Fasilitas</a>
+        <a href="kegiatan.html">Kegiatan</a>
+        <a href="galeri.html">Galeri</a>
+        <a href="aduan.html">Aduan Masyarakat</a>
+        <a href="admin.html">Admin</a>
+    </div>
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+
+    <div class="small-title">
+
+        LAYANAN MASYARAKAT
+
+    </div>
+
+
+    <h1>
+
+        Aduan Masyarakat
+
+    </h1>
+
+
+    <p>
+
+        Sampaikan aduan dan saran
+        untuk kemajuan Desa Serunai
+
+    </p>
+
+
+</section>
+
+
+
+<!-- ================= FORM ADUAN ================= -->
+
+<div class="form-container">
+
+
+    <h2>
+
+        Form Aduan/Saran Masyarakat
+
+    </h2>
+
+
+    <form id="aduanForm">
+
+
+        <!-- NAMA -->
+
+        <div class="form-group">
+
+            <label for="nama">
+
+                Nama
+
+            </label>
+
+
+            <input
+                type="text"
+                id="nama"
+                placeholder="Masukkan nama Anda"
+                required
+            >
+
+        </div>
+
+
+
+        <!-- NO HP -->
+
+        <div class="form-group">
+
+            <label for="hp">
+
+                No. HP
+
+            </label>
+
+
+            <input
+                type="tel"
+                id="hp"
+                placeholder="Masukkan nomor HP"
+                required
+            >
+
+        </div>
+
+
+
+        <!-- KATEGORI -->
+
+        <div class="form-group">
+
+            <label for="kategori">
+
+                Kategori Aduan
+
+            </label>
+
+
+            <select
+                id="kategori"
+                required
+            >
+
+                <option value="">
+
+                    -- Pilih Kategori --
+
+                </option>
+
+
+                <option value="Infrastruktur">
+
+                    Infrastruktur
+
+                </option>
+
+
+                <option value="Pelayanan Desa">
+
+                    Pelayanan Desa
+
+                </option>
+
+
+                <option value="Kebersihan">
+
+                    Kebersihan
+
+                </option>
+
+
+                <option value="Keamanan">
+
+                    Keamanan
+
+                </option>
+
+
+                <option value="Lainnya">
+
+                    Lainnya
+
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- ISI ADUAN -->
+
+        <div class="form-group">
+
+
+            <label for="isi">
+
+                Isi Aduan/Saran
+
+            </label>
+
+
+            <textarea
+                id="isi"
+                placeholder="Tuliskan aduan Anda..."
+                required
+            ></textarea>
+
+
+        </div>
+
+
+
+        <!-- TOMBOL -->
+
+        <button
+            type="submit"
+            class="btn-kirim"
+            id="btnKirim">
+
+            Kirim Aduan/Saran
+
+        </button>
+
+
+    </form>
+
+
+
+    <!-- HASIL -->
+
+    <div
+        id="hasil"
+        class="hasil">
+
+    </div>
+
+
+    <!-- API INFO -->
+
+    <div class="api-info">
+
+        Sistem terhubung dengan
+        layanan pengaduan Desa Serunai.
+
+    </div>
+
+
+</div>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+
+/* ==================================================
+   URL API
+================================================== */
+
+
+/*
+    GANTI URL INI DENGAN URL API ANDA.
+
+    CONTOH:
+
+    https://serunai.my.id/api/aduan
+
+*/
+
+const API_URL =
+    "https://script.google.com/macros/s/AKfycbw3DdtZPSlpcEm8FD1YqkW2PEuzzQgMmT2VUtLUeJVFLNxJkrNik90-c7Q5aI1RIcu0/exec";
+
+
+/* ==================================================
+   FORM SUBMIT
+================================================== */
+
+document
+    .getElementById("aduanForm")
+    .addEventListener(
+        "submit",
+        async function(e) {
+
+
+            e.preventDefault();
+
+
+            const tombol =
+                document.getElementById(
+                    "btnKirim"
+                );
+
+
+            const hasil =
+                document.getElementById(
+                    "hasil"
+                );
+
+
+
+            /* ==========================
+               AMBIL DATA FORM
+            ========================== */
+
+            const nama =
+                document
+                    .getElementById("nama")
+                    .value
+                    .trim();
+
+
+            const hp =
+                document
+                    .getElementById("hp")
+                    .value
+                    .trim();
+
+
+            const kategori =
+                document
+                    .getElementById("kategori")
+                    .value;
+
+
+            const isi =
+                document
+                    .getElementById("isi")
+                    .value
+                    .trim();
+
+
+
+            /* ==========================
+               DATA ADUAN
+            ========================== */
+
+            const aduanBaru = {
+
+                id:
+                    Date.now(),
+
+                nama:
+                    nama,
+
+                hp:
+                    hp,
+
+                kategori:
+                    kategori,
+
+                isi:
+                    isi,
+
+                tanggal:
+                    new Date()
+                        .toLocaleString(
+                            "id-ID"
+                        ),
+
+                status:
+                    "Menunggu",
+
+                balasan:
+                    ""
+
+            };
+
+
+
+            /* ==========================
+               UBAH TOMBOL
+            ========================== */
+
+            tombol.disabled =
+                true;
+
+            tombol.innerText =
+                "Mengirim...";
+
+
+
+            /* ==========================
+               KIRIM KE API
+            ========================== */
+
+            try {
+
+
+                const response =
+                    await fetch(
+                        API_URL,
+                        {
+
+                            method:
+                                "POST",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json",
+
+                                "Accept":
+                                    "application/json"
+
+                            },
+
+                            body:
+                                JSON.stringify(
+                                    aduanBaru
+                                )
+
+                        }
+                    );
+
+
+
+                if (
+                    !response.ok
+                ) {
+
+                    throw new Error(
+                        "API Error: " +
+                        response.status
+                    );
+
+                }
+
+
+
+                /*
+                    Jika API berhasil
+                */
+
+                hasil.className =
+                    "hasil sukses";
+
+
+                hasil.innerHTML = `
+
+                    ✅ Aduan berhasil dikirim!
+
+                    <br>
+
+                    Aduan Anda telah diterima
+                    oleh Desa Serunai.
+
+                `;
+
+
+                hasil.style.display =
+                    "block";
+
+
+
+                /*
+                    Kosongkan form
+                */
+
+                document
+                    .getElementById(
+                        "aduanForm"
+                    )
+                    .reset();
+
+
+            }
+
+
+            catch(error) {
+
+
+                console.error(
+                    "API Error:",
+                    error
+                );
+
+
+
+                /*
+                    =================================
+                    FALLBACK LOCAL STORAGE
+                    =================================
+
+                    Jika API belum tersedia,
+                    data tetap disimpan
+                    di browser.
+                */
+
+
+                let data =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "aduanDesaSerunai"
+                        )
+                    ) || [];
+
+
+                data.push(
+                    aduanBaru
+                );
+
+
+                localStorage.setItem(
+                    "aduanDesaSerunai",
+                    JSON.stringify(
+                        data
+                    )
+                );
+
+
+
+                hasil.className =
+                    "hasil sukses";
+
+
+                hasil.innerHTML = `
+
+                    ✅ Aduan berhasil disimpan!
+
+                    <br>
+
+                    Data tersimpan sementara
+                    di perangkat ini.
+
+                `;
+
+
+                hasil.style.display =
+                    "block";
+
+
+
+                document
+                    .getElementById(
+                        "aduanForm"
+                    )
+                    .reset();
+
+            }
+
+
+
+            /* ==========================
+               KEMBALIKAN TOMBOL
+            ========================== */
+
+            tombol.disabled =
+                false;
+
+            tombol.innerText =
+                "Kirim Aduan/Saran";
+
+
+
+            /* ==========================
+               HILANGKAN PESAN
+            ========================== */
+
+            setTimeout(
+                function() {
+
+                    hasil.style.display =
+                        "none";
+
+                },
+                5000
+            );
+
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+</html>
